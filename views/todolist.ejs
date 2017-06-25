@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+ <h1>To do list</h1>
+
+        <ol>
+        <% todolist.forEach(function(todo, index) { %>
+            <li><%= todo %>&nbsp;&nbsp;&nbsp;<a href="/todo/deleteit/<%= index %>"><button>delete</button></a> </li>
+        <% }); %>
+        </ol>
+
+        <form  method="post" action="/todo/addnew/">
+            
+                <label for="newtodo">Add new task</label>
+                <input type="text" name="newtodo" id="newtodo"/>
+                <input type="submit" />
+          
+        </form>    
+</body>
+</html>
