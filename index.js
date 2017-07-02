@@ -1,9 +1,27 @@
+
+
 var session = require('cookie-session'); 
 var bodyParser = require('body-parser'); 
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var cool = require('cool-ascii-faces');
 var express = require('express');
 var app = express();
+
+var fs = require('fs');
+
+fs.readFile('test.txt', 'utf8', function(err, data) {  
+    if (err) throw err;
+    console.log(data);
+});
+
+app.get('/test.txt', function(request, response) {
+  //response.send(cool());
+  fs.readFile('test.txt', 'utf8', function(err, data) {  
+    if (err) throw err;
+    console.log(data);
+    response.send(data);
+});
+});
 
 
 app.set('port', (process.env.PORT || 5123));

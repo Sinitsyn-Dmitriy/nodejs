@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="action.js"></script>
 </head>
 <body>
-  <h1>Post rates</h1>
+  
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="128447962950-31ri8l6v06rbp76hvt584ne5m3md2s0l.apps.googleusercontent.com">
@@ -19,6 +21,17 @@ function onSignIn(googleUser) {
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }	
+// auth2 is initialized with gapi.auth2.init() and a user is signed in.
+
+if (auth2.isSignedIn.get()) {
+  var profile = auth2.currentUser.get().getBasicProfile();
+  console.log('ID: ' + profile.getId());
+  console.log('Full Name: ' + profile.getName());
+  console.log('Given Name: ' + profile.getGivenName());
+  console.log('Family Name: ' + profile.getFamilyName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail());
+}
 </script>
 <br>
 <a href="#" onclick="signOut();">Sign out</a>
@@ -31,26 +44,24 @@ function onSignIn(googleUser) {
   }
 </script>
 
-<br><br><br><br><br>
 
-<form method="post" action="rate.ejs">
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $.ajax({url: "test.txt", success: function(result){
+            $("#ajax1").html(result);
+        }});
+    });
+});
 
-<select name="meal">
-<option value='Letters (Stamped)'>Letters (Stamped)</option>
-<option value='Letters (Metered)'>Letters (Metered)</option>
-<option value='Large Envelopes (Flats)'>Large Envelopes (Flats)</option>
-<option value='Parcels'>Parcels</option>
-</select>
-Types of mail
-<br><br>
-<input type="number" id="calories" name="calories" required>
-The weight of the item
-<br>
-<br>
-<input class="button" type="submit" name="submit" value="Post rates">  
-</form>
+</script>
 
+<h1>To Do list</h1>
 
+<a href="/todo"><button>Create the new goal</button></a>
+
+<div id="ajax1"><h4>Please, check your plans for today</h4></div>
+<button>check the list of goals for today</button>
 
 
 </body>
