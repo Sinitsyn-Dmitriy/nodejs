@@ -6,9 +6,15 @@
   <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="/js/action.js"></script>
+</head>
+<body>
+  
+
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="128447962950-31ri8l6v06rbp76hvt584ne5m3md2s0l.apps.googleusercontent.com">
-<!-- <script>
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+<script>
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -28,6 +34,8 @@ if (auth2.isSignedIn.get()) {
   console.log('Email: ' + profile.getEmail());
 }
 </script>
+<br>
+<a href="#" onclick="signOut();">Sign out</a>
 <script>
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
@@ -36,6 +44,8 @@ if (auth2.isSignedIn.get()) {
     });
   }
 </script>
+
+
 <script>
 $(document).ready(function(){
     $("button").click(function(){
@@ -46,20 +56,6 @@ $(document).ready(function(){
 });
 
 </script>
- -->
-</head>
-
-
-<body>
-  
-
-
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-<br>
-<a href="#" onclick="signOut();">Sign out</a>
-
-
 <div id="mainIDfirst">
 <div id="mainID">
 <h1>To Do list</h1>
