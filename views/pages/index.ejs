@@ -35,15 +35,15 @@ if (auth2.isSignedIn.get()) {
 }
 </script> -->
 <br>
-<a href="#" onclick="signOut();">Sign out</a>
-<script>
+<!-- <a href="#" onclick="signOut();">Sign out</a> -->
+<!-- <script>
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
       console.log('User signed out.');
     });
   }
-</script>
+</script> -->
 
 
 <script>
@@ -58,12 +58,14 @@ $(document).ready(function(){
 </script>
 <div id="mainIDfirst">
 <div id="mainID">
+<br><br>
 <h1>To Do list</h1>
 
 <a href="/todo"><button>Create the new goal</button></a>
-
+<br><br><br><br><br><br><br><br>
 <div id="ajax1"><h4>Please, check your plans for today</h4></div>
-<button>check the list of goals for today</button>
+<button id="button1">check the list of goals for today</button>
+<br><br><br><br>
 </div>
 </div>
 </body>

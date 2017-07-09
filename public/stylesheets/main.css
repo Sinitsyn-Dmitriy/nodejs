@@ -3,15 +3,25 @@ body{
 }
 #mainIDfirst{
   text-align: center;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 #mainID{
   background-color: yellow;
   text-align: center;
-  width: 40%;
-  height: 70%;
+  height: 120%;
   color: gray;
+  border-radius: 25px;
+  box-shadow: 10px 10px 5px #888888;
 }
-
+button{
+  border-radius: 5px;
+  color: white;
+  background-color: blue;
+  margin: 10px;
+  padding: 10px;
+  font-weight: 16px;
+}
 
 .jumbotron {
   background: #532F8C;
