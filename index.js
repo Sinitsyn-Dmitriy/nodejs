@@ -30,7 +30,7 @@ var fs = require('fs');
 //     console.log('ERROR:', error)
 //   });
 
-
+  
   
 
 fs.readFile('test.txt', 'utf8', function(err, data) {  
