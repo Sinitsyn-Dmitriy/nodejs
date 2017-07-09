@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="/js/action.js"></script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<meta name="google-signin-client_id" content="128447962950-31ri8l6v06rbp76hvt584ne5m3md2s0l.apps.googleusercontent.com">
-<!-- <script>
+
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -27,16 +17,14 @@ if (auth2.isSignedIn.get()) {
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail());
 }
-</script>
-<script>
+
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
       console.log('User signed out.');
     });
   }
-</script>
-<script>
+
 $(document).ready(function(){
     $("button").click(function(){
         $.ajax({url: "test.txt", success: function(result){
@@ -45,30 +33,4 @@ $(document).ready(function(){
     });
 });
 
-</script>
- -->
-</head>
 
-
-<body>
-  
-
-
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-<br>
-<a href="#" onclick="signOut();">Sign out</a>
-
-
-<div id="mainIDfirst">
-<div id="mainID">
-<h1>To Do list</h1>
-
-<a href="/todo"><button>Create the new goal</button></a>
-
-<div id="ajax1"><h4>Please, check your plans for today</h4></div>
-<button>check the list of goals for today</button>
-</div>
-</div>
-</body>
-</html>

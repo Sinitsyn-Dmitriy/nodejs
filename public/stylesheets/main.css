@@ -1,3 +1,18 @@
+body{
+  text-align: center;
+}
+#mainIDfirst{
+  text-align: center;
+}
+#mainID{
+  background-color: yellow;
+  text-align: center;
+  width: 40%;
+  height: 70%;
+  color: gray;
+}
+
+
 .jumbotron {
   background: #532F8C;
   color: white;

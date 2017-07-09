@@ -23,6 +23,21 @@ app.get('/test.txt', function(request, response) {
 });
 });
 
+app.use(express.static('public'));
+
+// app.get('/style.css', function(request, response) {
+//   response.send('style.css');
+// });
+
+// app.get('/style.css', function(request, response) {
+//   //response.send(cool());
+//   fs.readFile('/style.css', 'utf8', function(err, data) {  
+//     if (err) throw err;
+//     console.log(data);
+//     response.send(data);
+// });
+// });
+
 
 app.set('port', (process.env.PORT || 5123));
 
