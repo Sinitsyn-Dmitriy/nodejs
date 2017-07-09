@@ -1,11 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/action.js"></script>
 </head>
 <body>
- <h1>To do list</h1>
+ 
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="128447962950-31ri8l6v06rbp76hvt584ne5m3md2s0l.apps.googleusercontent.com">
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<br>
+<a href="#" onclick="signOut();">Sign out</a>
+<!-- <script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script> -->
+
+
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $.ajax({url: "test.txt", success: function(result){
+            $("#ajax1").html(result);
+        }});
+    });
+});
+
+</script>
+<div id="mainIDfirst">
+<div id="mainID">
+<br><br>
+ <h1>To do list.</h1>
 
         <ol>
         <% todolist.forEach(function(todo, index) { %>
@@ -20,5 +52,8 @@
                 <input type="submit" />
           
         </form>    
+<br><br><br><br>
+</div>
+</div>
 </body>
 </html>

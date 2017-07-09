@@ -7,33 +7,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="/js/action.js"></script>
 </head>
-<body>
-  
 
+<body>
+ 
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="128447962950-31ri8l6v06rbp76hvt584ne5m3md2s0l.apps.googleusercontent.com">
 <div class="g-signin2" data-onsuccess="onSignIn"></div>
-<!-- 
-<script>
-function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-}	
-// auth2 is initialized with gapi.auth2.init() and a user is signed in.
-
-if (auth2.isSignedIn.get()) {
-  var profile = auth2.currentUser.get().getBasicProfile();
-  console.log('ID: ' + profile.getId());
-  console.log('Full Name: ' + profile.getName());
-  console.log('Given Name: ' + profile.getGivenName());
-  console.log('Family Name: ' + profile.getFamilyName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail());
-}
-</script> -->
 <br>
 <a href="#" onclick="signOut();">Sign out</a>
 <script>
