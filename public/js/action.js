@@ -27,7 +27,7 @@ if (auth2.isSignedIn.get()) {
 
 $(document).ready(function(){
     $("button").click(function(){
-        $.ajax({url: "test.txt", success: function(result){
+        $.ajax({url: "/stylesheets/test.txt", success: function(result){
             $("#ajax1").html(result);
         }});
     });
