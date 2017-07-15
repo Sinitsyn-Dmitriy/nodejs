@@ -22,13 +22,13 @@ db.one('SELECT * FROM user_info')
   });
 
 
+var test123 = db.any('SELECT * FROM user_info');
 
-
-const query = db.query('SELECT * FROM user_info ORDER BY id ASC');
-    // Stream results back one row at a time
-    query.on('row', (row) => {
-      results.push(row);
-    });
+// const query = db.query('SELECT * FROM user_info ORDER BY id ASC');
+//     // Stream results back one row at a time
+//     query.on('row', (row) => {
+//       results.push(row);
+//     });
 
 // $usersSt = $db->prepare("SELECT * FROM user_info WHERE lastname = '". $pep ."'");  
 // $usersSt->execute();
