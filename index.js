@@ -20,6 +20,70 @@ var pgp = require('pg-promise')(options);
 var pg = require("pg");
 const connectionString = "postgres://iphioobnwfhxqh:71052f3a32f6d245594b6e8c134f56cf4952b0e2e6838c2a7108f806437ee3a3@ec2-23-21-220-48.compute-1.amazonaws.com:5432/d2mg8u31dr7ukf";
 
+
+
+app.get('/getPerson', function(request, response) {
+  getPerson(request, response);
+});
+
+function getPerson(request, response) {
+  // First get the person's id
+  var id = request.query.id;
+
+  // TODO: It would be nice to check here for a valid id before continuing on...
+
+  // use a helper function to query the DB, and provide a callback for when it's done
+  getPersonFromDb(id, function(error, result) {
+    // This is the callback function that will be called when the DB is done.
+    // The job here is just to send it back.
+
+    // Make sure we got a row with the person, then prepare JSON to send back
+    if (error || result == null || result.length != 1) {
+      response.status(500).json({success: false, data: error});
+    } else {
+      var person = result[0];
+      response.status(200).json(result[0]);
+    }
+  });
+}
+
+function getPersonFromDb(id, callback) {
+  console.log("Getting person from DB with id: " + id);
+
+  var client = new pg.Client(connectionString);
+
+  client.connect(function(err) {
+    if (err) {
+      console.log("Error connecting to DB: ")
+      console.log(err);
+      callback(err, null);
+    }
+
+    var sql = "SELECT id, first, last, birthdate FROM person WHERE id = $1::int";
+    var params = [id];
+
+    var query = client.query(sql, params, function(err, result) {
+      // we are now done getting the data from the DB, disconnect the client
+      client.end(function(err) {
+        if (err) throw err;
+      });
+
+      if (err) {
+        console.log("Error in query: ")
+        console.log(err);
+        callback(err, null);
+      }
+
+      console.log("Found result: " + JSON.stringify(result.rows));
+
+      // call whatever function the person that called us wanted, giving it
+      // the results that we have been compiling
+      callback(null, result.rows);
+    });
+  });
+
+} // end of getPersonFromDb
+
 // const db = pgp('postgres://iphioobnwfhxqh:71052f3a32f6d245594b6e8c134f56cf4952b0e2e6838c2a7108f806437ee3a3@ec2-23-21-220-48.compute-1.amazonaws.com:5432/d2mg8u31dr7ukf');
 
 // db.one('SELECT * FROM user_info')
