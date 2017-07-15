@@ -1,22 +1,13 @@
-
-
 var session = require('cookie-session'); 
 var bodyParser = require('body-parser'); 
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var cool = require('cool-ascii-faces');
 var express = require('express');
 var app = express();
-
 var fs = require('fs');
-
-
 var promise = require('bluebird');
 var options = {  promiseLib: promise };
 var pgp = require('pg-promise')(options);
-
-
-/////////////
-
 var pg = require("pg");
 const connectionString = "postgres://iphioobnwfhxqh:71052f3a32f6d245594b6e8c134f56cf4952b0e2e6838c2a7108f806437ee3a3@ec2-23-21-220-48.compute-1.amazonaws.com:5432/d2mg8u31dr7ukf";
 
@@ -52,7 +43,10 @@ function getToDoFromDb(id, callback) {
       callback(err, null);
     }
 
-    var sql = "SELECT id, first, last, birthdate FROM person WHERE id = $1::int";
+//todolists(name, descr, dline) VALUES
+    var sql = "SELECT id, name, descr, dline FROM todolists WHERE id = $1::int";
+
+    //var sql = "SELECT id, first, last, birthdate FROM person WHERE id = $1::int";
     var params = [id];
 
     var query = client.query(sql, params, function(err, result) {
@@ -75,75 +69,13 @@ function getToDoFromDb(id, callback) {
 
 } 
 
-
-// var pg = require("pg");
-// const connectionString = "postgres://iphioobnwfhxqh:71052f3a32f6d245594b6e8c134f56cf4952b0e2e6838c2a7108f806437ee3a3@ec2-23-21-220-48.compute-1.amazonaws.com:5432/d2mg8u31dr7ukf";
-
-// //////////
-
-// app.get('/getPerson', function(request, response) {
-//   getPerson(request, response);
-// });
-
-// function getPerson(request, response) {
-
-//   var id = request.query.id;
-
-//   getPersonFromDb(id, function(error, result) {
-//     if (error || result == null || result.length != 1) {
-//       response.status(500).json({success: false, data: error});
-//     } else {
-//       var person = result[0];
-//       response.status(200).json(result[0]);
-//     }
-//   });
-// }
-
-// function getPersonFromDb(id, callback) {
-//   console.log("Getting person from DB with id: " + id);
-
-//   var client = new pg.Client(connectionString);
-
-//   client.connect(function(err) {
-//     if (err) {
-//       console.log("Error connecting to DB: ")
-//       console.log(err);
-//       callback(err, null);
-//     }
-
-//     var sql = "SELECT id, first, last, birthdate FROM person WHERE id = $1::int";
-//     var params = [id];
-
-//     var query = client.query(sql, params, function(err, result) {
-//       // we are now done getting the data from the DB, disconnect the client
-//       client.end(function(err) {
-//         if (err) throw err;
-//       });
-
-//       if (err) {
-//         console.log("Error in query: ")
-//         console.log(err);
-//         callback(err, null);
-//       }
-
-//       console.log("Found result: " + JSON.stringify(result.rows));
-
-//       callback(null, result.rows);
-//     });
-//   });
-
-// } 
-
-///////////  
+/////////////
   
 
 fs.readFile('test.txt', 'utf8', function(err, data) {  
     if (err) throw err;
     console.log(data);
 });
-
-
-
 
 app.get('/test.txt', function(request, response) {
   //response.send(cool());
@@ -155,9 +87,6 @@ app.get('/test.txt', function(request, response) {
 });
 
 app.use(express.static('public'));
-
-
-
 
 app.set('port', (process.env.PORT || 5123));
 
@@ -189,9 +118,6 @@ app.get('/todo/deleteit/:id', function(req, res) {
     res.redirect('/todo');
 })
 
-
-
-
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
@@ -216,7 +142,6 @@ app.get('/contact', function(request, response) {
 app.get('/version2', function(request, response) {
   response.sendFile(__dirname + '/public/version2.html');
 });
-
 
 app.use(function(err, req, res, next) {
   console.error(err.stack);
