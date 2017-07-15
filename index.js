@@ -124,6 +124,13 @@ app.get('/contact', function(request, response) {
   response.sendFile(__dirname + '/public/contact.html');
 });
 
+app.get('/version2', function(request, response) {
+
+  //response.sendFile(__dirname + '/test2.html');
+
+  response.sendFile(__dirname + '/public/version2.html');
+});
+
 
 app.use(function(err, req, res, next) {
   console.error(err.stack);
