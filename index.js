@@ -58,7 +58,7 @@ function getToDoFromDb(id, callback) {
 //delete
 
 
-app.get('/delToDo', function(request, response) {
+app.delete('/delToDo', function(request, response) {
   getToDo(request, response);
 });
 
