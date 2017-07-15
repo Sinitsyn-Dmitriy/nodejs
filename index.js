@@ -55,6 +55,53 @@ function getToDoFromDb(id, callback) {
   });
 } 
 
+//delete
+
+
+app.get('/delToDo', function(request, response) {
+  getToDo(request, response);
+});
+
+function delToDo(request, response) {
+  var id = request.query.id;
+  delToDoFromDb(id, function(error, result) {
+    if (error || result == null || result.length != 1) {
+      response.status(500).json({success: false, data: error});
+    } else {
+      var todo1 = result[0];
+      response.status(200).json(result[0]);
+    }
+  });
+}
+
+function delToDoFromDb(id, callback) {
+  console.log("Deleting ToDo from DB with id: " + id);
+  var client = new pg.Client(connectionString);
+  client.connect(function(err) {
+    if (err) {
+      console.log("Error connecting to DB: ")
+      console.log(err);
+      callback(err, null);
+    }
+//    var sql = "SELECT id, name, descr, dline FROM todolists WHERE id = $1::int";
+    var sql = "DELETE FROM todolists WHERE id = $1::int";
+    var params = [id];
+    var query = client.query(sql, params, function(err, result) {
+      client.end(function(err) {
+        if (err) throw err;
+      });
+      if (err) {
+        console.log("Error in query: ")
+        console.log(err);
+        callback(err, null);
+      }
+      console.log("Found result: " + JSON.stringify(result.rows));
+      callback(null, result.rows);
+    });
+  });
+} 
+
+
 /////////////
   
 
