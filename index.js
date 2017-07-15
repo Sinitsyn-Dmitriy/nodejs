@@ -68,8 +68,8 @@ function delToDo(request, response) {
     if (error || result == null || result.length != 1) {
       response.status(500).json({success: false, data: error});
     } else {
-     // var todo1 = result[0];
-     // response.status(200).json(result[0]);
+      var todo1 = result[0];
+      response.status(200).json(result[0]);
     }
   });
 }
@@ -95,8 +95,8 @@ function delToDoFromDb(id, callback) {
         console.log(err);
         callback(err, null);
       }
-      //console.log("Found result: " + JSON.stringify(result.rows));
-     // callback(null, result.rows);
+      console.log("Found result: " + JSON.stringify(result.rows));
+      callback(null, result.rows);
     });
   });
 } 
