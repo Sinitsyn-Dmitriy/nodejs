@@ -24,6 +24,8 @@ db.one('SELECT * FROM user_info')
 
 var test123 = db.any('SELECT * FROM user_info');
 
+console.log(test123);
+
 // const query = db.query('SELECT * FROM user_info ORDER BY id ASC');
 //     // Stream results back one row at a time
 //     query.on('row', (row) => {
