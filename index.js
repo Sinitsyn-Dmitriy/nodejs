@@ -16,21 +16,22 @@ var pgp = require('pg-promise')(options);
 
 
 /////////////
-//const pgp = require('pg-promise')();
-const db = pgp('postgres://iphioobnwfhxqh:71052f3a32f6d245594b6e8c134f56cf4952b0e2e6838c2a7108f806437ee3a3@ec2-23-21-220-48.compute-1.amazonaws.com:5432/d2mg8u31dr7ukf');
 
-db.one('SELECT * FROM user_info')
-  .then(function (data) {
-    console.log('DATA:', data)
-  })
-  .catch(function (error) {
-    console.log('ERROR:', error)
-  });
+var pg = require("pg");
+const connectionString = "postgres://iphioobnwfhxqh:71052f3a32f6d245594b6e8c134f56cf4952b0e2e6838c2a7108f806437ee3a3@ec2-23-21-220-48.compute-1.amazonaws.com:5432/d2mg8u31dr7ukf";
+
+// const db = pgp('postgres://iphioobnwfhxqh:71052f3a32f6d245594b6e8c134f56cf4952b0e2e6838c2a7108f806437ee3a3@ec2-23-21-220-48.compute-1.amazonaws.com:5432/d2mg8u31dr7ukf');
+
+// db.one('SELECT * FROM user_info')
+//   .then(function (data) {
+//     console.log('DATA:', data)
+//   })
+//   .catch(function (error) {
+//     console.log('ERROR:', error)
+//   });
 
 
-var test123 = db.any('SELECT * FROM user_info');
 
-console.log(test123);
 
 
 // ==========
@@ -136,6 +137,9 @@ app.get('/todo/deleteit/:id', function(req, res) {
     res.redirect('/todo');
 })
 
+
+
+
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
@@ -151,32 +155,23 @@ app.get('/cool', function(request, response) {
 });
 
 app.get('/about', function(request, response) {
-
-  //response.sendFile(__dirname + '/test2.html');
-
   response.sendFile(__dirname + '/public/test.html');
 });
 app.get('/contact', function(request, response) {
-
-  //response.sendFile(__dirname + '/test2.html');
-
   response.sendFile(__dirname + '/public/contact.html');
 });
 
 app.get('/version2', function(request, response) {
-
-  //response.sendFile(__dirname + '/test2.html');
-
   response.sendFile(__dirname + '/public/version2.html');
 });
 
 
 app.use(function(err, req, res, next) {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  res.status(500).send('Ops! It is 500 status!');
 });
 app.use(function(req, res, next) {
-  res.status(404).send('Sorry cant find that!');
+  res.status(404).send('Sorry, no URL with this name!');
 });
 
 app.listen(app.get('port'), function() {
