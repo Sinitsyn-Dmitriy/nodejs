@@ -1,3 +1,21 @@
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+
+    .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      min-height: 200px;
+    }
+
+    /* Hide the carousel text when the screen is less than 600 pixels wide */
+    @media (max-width: 600px) {
+      .carousel-caption {
+        display: none; 
+      }
+    }
+
 body{
   text-align: center;
 }
@@ -14,13 +32,44 @@ body{
   border-radius: 25px;
   box-shadow: 10px 10px 5px #888888;
 }
+#mainIDfirst2{
+  text-align: left;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+#mainID2{
+  background-color: yellow;
+  text-align: left;
+  height: 120%;
+  color: gray;
+  border-radius: 25px;
+  box-shadow: 10px 10px 5px #888888;
+  
+}
+#center{
+  margin-left: 200px;
+}
 button{
-  border-radius: 5px;
+  border-radius: 2px;
   color: white;
-  background-color: blue;
+  background-color: #ff0030;
   margin: 10px;
   padding: 10px;
   font-weight: 16px;
+  border: none;
+}
+#navbar-brand{
+  width: 25%;
+}
+#form1{
+  color: #ff0030;
+}
+.form1{
+  color: #ff0030;
+}
+#text{
+  margin: 40px;
+  /*width: 60%;*/
 }
 
 .jumbotron {

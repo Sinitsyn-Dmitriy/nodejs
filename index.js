@@ -11,17 +11,17 @@ var fs = require('fs');
 
 
 const pgp = require('pg-promise')();
-const db = pgp('postgres://iphioobnwfhxqh:71052f3a32f6d245594b6e8c134f56cf4952b0e2e6838c2a7108f806437ee3a3@ec2-23-21-220-48.compute-1.amazonaws.com:5432/d2mg8u31dr7ukf');
- //var pgp = require('pg-promise');
- //var db = pgp('postgres://iphioobnwfhxqh:71052f3a32f6d245594b6e8c134f56cf4952b0e2e6838c2a7108f806437ee3a3@ec2-23-21-220-48.compute-1.amazonaws.com:5432/d2mg8u31dr7ukf');
-   
-db.one('SELECT * FROM user_info')
-  .then(function (data) {
-    console.log('DATA:', data)
-  })
-  .catch(function (error) {
-    console.log('ERROR:', error)
-  });
+//const db = pgp('postgres://iphioobnwfhxqh:71052f3a32f6d245594b6e8c134f56cf4952b0e2e6838c2a7108f806437ee3a3@ec2-23-21-220-48.compute-1.amazonaws.com:5432/d2mg8u31dr7ukf');
+
+// db.one('SELECT * FROM user_info')
+//   .then(function (data) {
+//     console.log('DATA:', data)
+//   })
+//   .catch(function (error) {
+//     console.log('ERROR:', error)
+//   });
+
+
 
 // db.one('SELECT $1 AS value', 123)
 //   .then(function (data) {
@@ -111,6 +111,27 @@ app.get('/cool', function(request, response) {
   response.send(cool());
 });
 
+app.get('/about', function(request, response) {
+
+  //response.sendFile(__dirname + '/test2.html');
+
+  response.sendFile(__dirname + '/public/test.html');
+});
+app.get('/contact', function(request, response) {
+
+  //response.sendFile(__dirname + '/test2.html');
+
+  response.sendFile(__dirname + '/public/contact.html');
+});
+
+
+app.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+app.use(function(req, res, next) {
+  res.status(404).send('Sorry cant find that!');
+});
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
