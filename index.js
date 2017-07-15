@@ -41,7 +41,7 @@ function getToDo(request, response) {
 }
 
 function getToDoFromDb(id, callback) {
-  console.log("Getting person from DB with id: " + id);
+  console.log("Getting ToDo from DB with id: " + id);
 
   var client = new pg.Client(connectionString);
 
@@ -56,7 +56,7 @@ function getToDoFromDb(id, callback) {
     var params = [id];
 
     var query = client.query(sql, params, function(err, result) {
-      // we are now done getting the data from the DB, disconnect the client
+
       client.end(function(err) {
         if (err) throw err;
       });
