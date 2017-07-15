@@ -59,7 +59,7 @@ function getToDoFromDb(id, callback) {
 
 
 app.get('/delToDo', function(request, response) {
-  getToDo(request, response);
+  delToDo(request, response);
 });
 
 function delToDo(request, response) {
