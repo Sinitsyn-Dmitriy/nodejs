@@ -21,12 +21,10 @@ db.one('SELECT * FROM user_info')
     console.log('ERROR:', error)
   });
 
-const connectionString = process.env.DATABASE_URL || 'postgres://iphioobnwfhxqh:71052f3a32f6d245594b6e8c134f56cf4952b0e2e6838c2a7108f806437ee3a3@ec2-23-21-220-48.compute-1.amazonaws.com:5432/d2mg8u31dr7ukf';
 
-const client = new pg.Client(connectionString);
-client.connect();
 
-const query = client.query('SELECT * FROM user_info ORDER BY id ASC');
+
+const query = db.query('SELECT * FROM user_info ORDER BY id ASC');
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);
