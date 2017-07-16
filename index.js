@@ -31,9 +31,9 @@ function version2ToDo(request, response) {
     // if (error || result == null || result.length != 1) {
     //   response.status(500).json({success: false, data: error});
     // } else {
-      var todo1 = result[1];
+      var todo1 = result;
       console.log(todo1);
-      response.status(200).json(result[1]);
+      response.status(200).json(result);
    // }
   });
 }  
