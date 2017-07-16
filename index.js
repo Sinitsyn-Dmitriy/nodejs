@@ -64,7 +64,7 @@ app.get('/newToDo', function(request, response) {
 });
 
 function newToDo(request, response) {
-  //var id = request.query.id;
+  var id = 123;
   newToDoFromDb(id, function(error, result) {
     if (error || result == null || result.length != 1) {
       response.status(500).json({success: false, data: error});
