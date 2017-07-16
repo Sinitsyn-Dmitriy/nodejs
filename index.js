@@ -29,7 +29,7 @@ function getToDo(request, response) {
       response.status(200).json(result[0]);
     }
   });
-}
+} 
 
 function getToDoFromDb(id, callback) {
   console.log("Getting ToDo from DB with id: " + id);
