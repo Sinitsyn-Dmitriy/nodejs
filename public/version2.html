@@ -79,12 +79,13 @@ $.getJSON("/version3", function(result){
 // result.forEach( function(element, index) {
 // alert(index);
 // });
-updateResultList(result)
+updateResultList(result);
 
 });    
 }
 
 function updateResultList(data) {
+  alert("good!");
   if (data.Search && data.Search.length > 0) {
     var resultList = $("#ulResults");
     resultList.empty();
