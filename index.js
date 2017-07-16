@@ -13,29 +13,13 @@ const connectionString = "postgres://iphioobnwfhxqh:71052f3a32f6d245594b6e8c134f
 
 //////////
 //v2
-// app.get('/version2', function(request, response) {
-//   response.sendFile(__dirname + '/public/version2.html');
-// });
-
-
-
-
-function allTodos() {
-  version2ToDoFromDb( function(error, result) {
-      var todo1 = result;
-      console.log(todo1); 
-      //response.status(200).json(result);
-      //response.sendFile(__dirname + '/public/version2.html');
-      return result;
-  });
-return result;
-}  
-
-
-
-
-
 app.get('/version2', function(request, response) {
+  response.sendFile(__dirname + '/public/version2.html');
+});
+
+
+
+app.get('/version3', function(request, response) {
   version2ToDo(request, response);
 });
 
@@ -43,8 +27,8 @@ function version2ToDo(request, response) {
   version2ToDoFromDb( function(error, result) {
       var todo1 = result;
       console.log(todo1); 
-      //response.status(200).json(result);
-      response.sendFile(__dirname + '/public/version2.html');
+      response.status(200).json(result);
+      //response.sendFile(__dirname + '/public/version2.html');
   });
 }  
 
