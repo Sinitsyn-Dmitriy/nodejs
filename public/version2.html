@@ -56,10 +56,11 @@
 
 
 
-<button onclick="testAll()"></button>
+<!-- <button onclick="testAll()"></button>
 <div id="json1"></div>
+ -->
 <script>
-function testAll() {
+//function testAll() {
 
 $.getJSON("/version3", function(result){
 
@@ -67,7 +68,7 @@ console.log(result);
 
 createList(result);
 });    
-}
+//}
 
 function createList(data) {
 
