@@ -48,8 +48,8 @@ function version2ToDoFromDb( callback) {
       callback(err, null);
     }
     var sql = "SELECT * FROM todolists";
-    var params = [];
-    var query = client.query(sql, params, function(err, result) {
+    //var params = [];
+    var query = client.query(sql, function(err, result) {
       client.end(function(err) {
         if (err) throw err;
       });
