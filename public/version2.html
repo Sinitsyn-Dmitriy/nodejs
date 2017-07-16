@@ -67,11 +67,28 @@ function testAll() {
 
 alert("start!");
 
+    // $.getJSON("/version3", function(result){
+    //         $.each(result, function(i, field){
+    //             $("#json1").append(field + " ");
+    //         });
+    //     });
+
+
     $.getJSON("/version3", function(result){
-            $.each(result, function(i, field){
-                $("#json1").append(field + " ");
-            });
+
+result.forEach( function(element, index) {
+  
+  alert(index);
+
+});
+
+            // $.each(result, function(i, field){
+            //     $("#json1").append(field + " ");
+            // });
         });
+
+
+
 
     // $.get("/version3", function(data, status){
     
