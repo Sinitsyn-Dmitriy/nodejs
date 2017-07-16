@@ -94,7 +94,7 @@ function newToDoFromDb(id, callback) {
 //   ('Movies', 'Watch Sider Man ', '2017-07-20');
 
 
-
+ 
     var params = [id];
     var query = client.query(sql, params, function(err, result) {
       client.end(function(err) {
