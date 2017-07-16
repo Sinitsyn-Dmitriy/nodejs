@@ -86,7 +86,7 @@ function newToDoFromDb(id, callback) {
       callback(err, null);
     }
 //    var sql = "SELECT id, name, descr, dline FROM todolists WHERE id = $1::int";
-    var sql = "INSERT INTO todolists (name, descr, dline) VALUES ('testName', '!!!!Play some BasketBall with friends in the park', '1017-07-15')";
+    var sql = "INSERT INTO todolists (name, descr, dline) VALUES ('testName', '!!!!Play some BasketBall with friends in the park', '1017-07-15')::int";
  
 // INSERT INTO todolists(name, descr, dline) VALUES
 //   ('Sport', 'Play some BasketBall with friends in the park', '2017-07-15'),
