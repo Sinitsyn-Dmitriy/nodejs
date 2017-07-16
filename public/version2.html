@@ -60,7 +60,17 @@
 
 
 
+<button onclick="testAll"></button>
+
 <script>
+function testAll() {
+
+
+    $.get("/version3", function(data, status){
+    
+     alert(data);
+  });
+}
 //  alert(todo1);
 // var test = allTodos();
 //   alert(test);
