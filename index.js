@@ -64,20 +64,20 @@ app.get('/newToDo', function(request, response) {
 });
 
 function newToDo(request, response) {
-  
-  newToDoFromDb(function(error, result) {
+  var id = request.query.id;
+  newToDoFromDb(id, function(error, result) {
     if (error || result == null || result.length != 1) {
       response.status(500).json({success: false, data: error});
     } else {
-    //  var todo1 = result[0];
-     // console.log(todo1);
-    //  response.status(200).json(result[0]);
+      var todo1 = result[0];
+      console.log(todo1);
+      response.status(200).json(result[0]);
     }
   });
 }
 
-function newToDoFromDb( callback) {
-  console.log("New ToDo from DB with id: ");
+function newToDoFromDb(id, callback) {
+  console.log("Getting ToDo from DB with id: " + id);
   var client = new pg.Client(connectionString);
   client.connect(function(err) {
     if (err) {
@@ -85,18 +85,11 @@ function newToDoFromDb( callback) {
       console.log(err);
       callback(err, null);
     }
-    var sql = "SELECT id, name, descr, dline FROM todolists WHERE id = $1::int";
-//    var sql = "INSERT INTO todolists (name, descr, dline) VALUES ('testName', '!!!!Play some BasketBall with friends in the park', '1017-07-15')::int";
+ //   var sql = "SELECT id, name, descr, dline FROM todolists WHERE id = $1::int";
+    var sql = "INSERT INTO todolists (name, descr, dline) VALUES ('testName', '!!!!Play some BasketBall with friends in the park', '1017-07-15')::int";
  
-// INSERT INTO todolists(name, descr, dline) VALUES
-//   ('Sport', 'Play some BasketBall with friends in the park', '2017-07-15'),
-//   ('Shop', 'Buy vigetables and juise', '2017-07-15'),
-//   ('Movies', 'Watch Sider Man ', '2017-07-20');
-
-
- 
-   
-    var query = client.query(sql, function(err, result) {
+    var params = [id];
+    var query = client.query(sql, params, function(err, result) {
       client.end(function(err) {
         if (err) throw err;
       });
@@ -105,11 +98,12 @@ function newToDoFromDb( callback) {
         console.log(err);
         callback(err, null);
       }
-     // console.log("Found result: " + JSON.stringify(result.rows));
+      console.log("Found result: " + JSON.stringify(result.rows));
       callback(null, result.rows);
     });
   });
 } 
+
 
 
 //update
