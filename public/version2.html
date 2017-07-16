@@ -61,15 +61,22 @@
 
 
 <button onclick="testAll"></button>
-
+<div id="json1"></div>
 <script>
 function testAll() {
 
 
-    $.get("/version3", function(data, status){
+    $.getJSON("/version3", function(result){
+            $.each(result, function(i, field){
+                $("#json1").append(field + " ");
+            });
+        });
+
+    // $.get("/version3", function(data, status){
     
-     alert(data);
-  });
+    //  alert(data);
+    // });
+    
 }
 //  alert(todo1);
 // var test = allTodos();
