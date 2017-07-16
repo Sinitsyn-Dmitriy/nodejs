@@ -64,8 +64,8 @@ app.get('/newToDo', function(request, response) {
 });
 
 function newToDo(request, response) {
-  var id = 123;
-  newToDoFromDb(id, function(error, result) {
+  
+  newToDoFromDb(function(error, result) {
     if (error || result == null || result.length != 1) {
       response.status(500).json({success: false, data: error});
     } else {
@@ -76,7 +76,7 @@ function newToDo(request, response) {
   });
 }
 
-function newToDoFromDb(id, callback) {
+function newToDoFromDb( callback) {
   console.log("New ToDo from DB with id: ");
   var client = new pg.Client(connectionString);
   client.connect(function(err) {
@@ -95,8 +95,8 @@ function newToDoFromDb(id, callback) {
 
 
  
-    var params = 123;
-    var query = client.query(sql, params, function(err, result) {
+   
+    var query = client.query(sql, function(err, result) {
       client.end(function(err) {
         if (err) throw err;
       });
