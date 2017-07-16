@@ -67,7 +67,8 @@ app.get('/newToDo', function(request, response) {
 
 function newToDo(request, response) {
   var id = request.query.id;
-  newToDoFromDb(id, function(error, result) {
+  var qwe = request.query.qwe;
+  newToDoFromDb(id, qwe, function(error, result) {
     if (error || result == null || result.length != 1) {
       response.status(500).json({success: false, data: error});
     } else {
@@ -78,7 +79,7 @@ function newToDo(request, response) {
   });
 }
 
-function newToDoFromDb(id, callback) {
+function newToDoFromDb(id, qwe,  callback) {
   console.log("Getting ToDo from DB with id: " + id);
   var client = new pg.Client(connectionString);
   client.connect(function(err) {
@@ -104,7 +105,7 @@ function newToDoFromDb(id, callback) {
 //    client.query('INSERT INTO todolists(text, complete) values($1, $2)', [data.text, data.complete]);
 
 //    var params = [name, descr, dline];
-var qwe = "1017-07-15";
+//var qwe = "1017-07-15";
 
     var params = [id, id, qwe];
     var query = client.query(sql, params, function(err, result) {
