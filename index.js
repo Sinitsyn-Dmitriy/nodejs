@@ -151,7 +151,7 @@ function updToDoFromDb(name, descr, dline, id, callback) {
     
     //var sql = "SELECT id, name, descr, dline FROM todolists WHERE id = $1::int";
 
-    var sql = "UPDATE todolists SET name=$1::varchar, descr=$2::varchar, dline=$3::date WHERE id = $1::int";
+    var sql = "UPDATE todolists SET name=$1::varchar, descr=$2::varchar, dline=$3::date WHERE id = $4::int";
     
     //var sql = "INSERT INTO todolists (name, descr, dline) VALUES ($1::varchar, $2::varchar, $3::date)";
 
