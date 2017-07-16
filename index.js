@@ -149,15 +149,15 @@ function updToDoFromDb(name, descr, dline, id, callback) {
     
     //var sql = "UPDATE todolists SET name='name', descr='deskript', dline='2222-07-15T00:00:00.000Z' WHERE id = $1::int";
     
-    var sql = "SELECT id, name, descr, dline FROM todolists WHERE id = $1::int";
+    //var sql = "SELECT id, name, descr, dline FROM todolists WHERE id = $1::int";
 
-    //var sql = "UPDATE todolists SET name=$1::varchar, descr='deskript', descr=$2::varchar, dline=$3::date WHERE id = $1::int";
+    var sql = "UPDATE todolists SET name=$1::varchar, descr=$2::varchar, dline=$3::date WHERE id = $1::int";
     
     //var sql = "INSERT INTO todolists (name, descr, dline) VALUES ($1::varchar, $2::varchar, $3::date)";
 
-    var params = [id]; 
+    //var params = [id]; 
     
-    //var params = [name, descr, dline, id]; 
+    var params = [name, descr, dline, id]; 
     var query = client.query(sql, params, function(err, result) {
       client.end(function(err) {
         if (err) throw err;
