@@ -93,7 +93,7 @@ function newToDoFromDb(id, callback) {
 
 // var sql = "INSERT INTO todolists (name, descr, dline) VALUES ( ${'123'}::varchar, ${'456'}::varchar, ${'1017-07-15'}::date)";
  
-var sql = "INSERT INTO todolists (name, descr, dline) VALUES ( $1, $2, $3)";
+var sql = "INSERT INTO todolists (name, descr, dline) VALUES ( $1::int, $2::int, $3::int)";
 
 //    client.query('INSERT INTO todolists(text, complete) values($1, $2)', [data.text, data.complete]);
 
