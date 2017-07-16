@@ -59,53 +59,83 @@ function getToDoFromDb(id, callback) {
 
 // create
 
-app.get('/newToDo', function(request, response) {
-  newToDo(request, response);
-});
-
-function newToDo(request, response) {
-  var id = request.query.id;
-  newToDoFromDb(id, function(error, result) {
-    if (error || result == null || result.length != 1) {
-      response.status(500).json({success: false, data: error});
-    } else {
-      var todo1 = result[0];
-      console.log(todo1);
-      response.status(200).json(result[0]);
-    }
-  });
-}
-
-function newToDoFromDb(id, callback) {
-  console.log("Getting ToDo from DB with id: " + id);
-  var client = new pg.Client(connectionString);
-  client.connect(function(err) {
-    if (err) {
-      console.log("Error connecting to DB: ")
+app.get('/newToDo', (req, res, next) => {
+  const results = [];
+  // Grab data from http request
+  const data = {text: req.body.text, complete: false};
+  // Get a Postgres client from the connection pool
+  pg.connect(connectionString, (err, client, done) => {
+    // Handle connection errors
+    if(err) {
+      done();
       console.log(err);
-      callback(err, null);
+      return res.status(500).json({success: false, data: err});
     }
- //   var sql = "SELECT id, name, descr, dline FROM todolists WHERE id = $1::int";
- //   var sql = "INSERT INTO todolists (name, descr, dline) VALUES ('testName', '!!!!Play some BasketBall with friends in the park', '1017-07-15')::int";
- //   var sql = "INSERT INTO todolists (name, descr, dline) VALUES ( ${'123'}::int, ${'456'}::int, ${'1017-07-15'}::int)";
-
-var sql = "INSERT INTO todolists (name, descr, dline) VALUES ( ${'123'}::varchar, ${'456'}::varchar, ${'1017-07-15'}::date)";
- 
-    var params = [id];
-    var query = client.query(sql, params, function(err, result) {
-      client.end(function(err) {
-        if (err) throw err;
-      });
-      if (err) {
-        console.log("Error in query: ")
-        console.log(err);
-        callback(err, null);
-      }
-      console.log("Found result: " + JSON.stringify(result.rows));
-      callback(null, result.rows);
+    // SQL Query > Insert Data
+    client.query('INSERT INTO todolists(text, complete) values($1, $2)',
+    [data.text, data.complete]);
+    // SQL Query > Select Data
+    const query = client.query('SELECT * FROM todolists ORDER BY id ASC');
+    // Stream results back one row at a time
+    query.on('row', (row) => {
+      results.push(row);
+    });
+    // After all data is returned, close connection and return results
+    query.on('end', () => {
+      done();
+      return res.json(results);
     });
   });
-} 
+});
+
+
+// app.get('/newToDo', function(request, response) {
+//   newToDo(request, response);
+// });
+
+// function newToDo(request, response) {
+//   var id = request.query.id;
+//   newToDoFromDb(id, function(error, result) {
+//     if (error || result == null || result.length != 1) {
+//       response.status(500).json({success: false, data: error});
+//     } else {
+//       var todo1 = result[0];
+//       console.log(todo1);
+//       response.status(200).json(result[0]);
+//     }
+//   });
+// }
+
+// function newToDoFromDb(id, callback) {
+//   console.log("Getting ToDo from DB with id: " + id);
+//   var client = new pg.Client(connectionString);
+//   client.connect(function(err) {
+//     if (err) {
+//       console.log("Error connecting to DB: ")
+//       console.log(err);
+//       callback(err, null);
+//     }
+//  //   var sql = "SELECT id, name, descr, dline FROM todolists WHERE id = $1::int";
+//  //   var sql = "INSERT INTO todolists (name, descr, dline) VALUES ('testName', '!!!!Play some BasketBall with friends in the park', '1017-07-15')::int";
+//  //   var sql = "INSERT INTO todolists (name, descr, dline) VALUES ( ${'123'}::int, ${'456'}::int, ${'1017-07-15'}::int)";
+
+// var sql = "INSERT INTO todolists (name, descr, dline) VALUES ( ${'123'}::varchar, ${'456'}::varchar, ${'1017-07-15'}::date)";
+ 
+//     var params = [id];
+//     var query = client.query(sql, params, function(err, result) {
+//       client.end(function(err) {
+//         if (err) throw err;
+//       });
+//       if (err) {
+//         console.log("Error in query: ")
+//         console.log(err);
+//         callback(err, null);
+//       }
+//       console.log("Found result: " + JSON.stringify(result.rows));
+//       callback(null, result.rows);
+//     });
+//   });
+// } 
 
 
 
