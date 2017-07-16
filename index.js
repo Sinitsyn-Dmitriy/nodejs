@@ -26,7 +26,7 @@ function version2ToDo(request, response) {
       var todo1 = result;
       console.log(todo1); 
 //      response.status(200).json(result);
-      response.sendFile(__dirname + '/public/version2.html');
+      response.sendFile(__dirname + '/public/version2.html', test123(todo1));
   });
 }  
 
