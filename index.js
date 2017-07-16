@@ -64,13 +64,7 @@ app.get('/newToDo', (req, res, next) => {
   // Grab data from http request
   const data = {text: req.body.text, complete: false};
   // Get a Postgres client from the connection pool
-  pg.connect(connectionString, (err, client, done) => {
-    // Handle connection errors
-    if(err) {
-      done();
-      console.log(err);
-      return res.status(500).json({success: false, data: err});
-    }
+
     // SQL Query > Insert Data
     client.query('INSERT INTO todolists(text, complete) values($1, $2)',
     [data.text, data.complete]);
@@ -85,7 +79,7 @@ app.get('/newToDo', (req, res, next) => {
       done();
       return res.json(results);
     });
-  });
+ 
 });
 
 
