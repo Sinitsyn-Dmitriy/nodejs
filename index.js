@@ -82,7 +82,7 @@ function newToDo(request, response) {
   });
 }
 
-function newToDoFromDb(id, qwe, name, descr, dline, callback) {
+function newToDoFromDb(name, descr, dline, callback) {
   console.log("Creating ToDo in DB");
   var client = new pg.Client(connectionString);
   client.connect(function(err) {
