@@ -89,7 +89,7 @@ function newToDoFromDb(id, callback) {
  //   var sql = "INSERT INTO todolists (name, descr, dline) VALUES ('testName', '!!!!Play some BasketBall with friends in the park', '1017-07-15')::int";
     var sql = "INSERT INTO todolists (name, descr, dline) VALUES ('testName', '!!!!Play some BasketBall with friends in the park', '1017-07-15')";
 
-
+ 
     var params = [id];
     var query = client.query(sql, params, function(err, result) {
       client.end(function(err) {
