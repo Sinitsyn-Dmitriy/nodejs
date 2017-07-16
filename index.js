@@ -155,7 +155,9 @@ function updToDoFromDb(name, descr, dline, id, callback) {
     
     //var sql = "INSERT INTO todolists (name, descr, dline) VALUES ($1::varchar, $2::varchar, $3::date)";
 
-    var params = [name, descr, dline, id]; 
+    var params = [id]; 
+    
+    //var params = [name, descr, dline, id]; 
     var query = client.query(sql, params, function(err, result) {
       client.end(function(err) {
         if (err) throw err;
