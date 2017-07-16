@@ -32,7 +32,7 @@ function version2ToDo(request, response) {
     //   response.status(500).json({success: false, data: error});
     // } else {
       var todo1 = result;
-      console.log(todo1);
+      console.log(todo1); 
       response.status(200).json(result);
    // }
   });
