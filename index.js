@@ -87,7 +87,7 @@ function newToDoFromDb(id, qwe,  callback) {
       console.log("Error connecting to DB: ")
       console.log(err);
       callback(err, null);
-    }
+    } 
  
 //    var sql = "SELECT id, name, descr, dline FROM todolists WHERE id = $1::int";
 //    var sql = "INSERT INTO todolists (name) VALUES ($1::int)";
