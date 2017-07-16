@@ -90,7 +90,7 @@ function newToDoFromDb(id, callback) {
  
 //    var sql = "SELECT id, name, descr, dline FROM todolists WHERE id = $1::int";
 //    var sql = "INSERT INTO todolists (name) VALUES ($1::int)";
-    var sql = "INSERT INTO todolists (name, descr) VALUES ($1::int, $2::int)";
+    var sql = "INSERT INTO todolists (name, descr, dline) VALUES ($1::int, $2::int, $3::int)";
 
  //   var sql = "INSERT INTO todolists (name, descr, dline) VALUES ('testName', '!!!!Play some BasketBall with friends in the park', '1017-07-15')::int";
  //   var sql = "INSERT INTO todolists (name, descr, dline) VALUES ( ${'123'}::int, ${'456'}::int, ${'1017-07-15'}::int)";
@@ -104,9 +104,9 @@ function newToDoFromDb(id, callback) {
 //    client.query('INSERT INTO todolists(text, complete) values($1, $2)', [data.text, data.complete]);
 
 //    var params = [name, descr, dline];
-//var qwe = "just some test";
+var qwe = "1017-07-15";
 
-    var params = [id, id];
+    var params = [id, id, qwe];
     var query = client.query(sql, params, function(err, result) {
       client.end(function(err) {
         if (err) throw err;
