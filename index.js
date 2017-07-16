@@ -64,20 +64,20 @@ app.get('/newToDo', function(request, response) {
 });
 
 function newToDo(request, response) {
-  var id = request.query.id;
+  //var id = request.query.id;
   newToDoFromDb(id, function(error, result) {
     if (error || result == null || result.length != 1) {
       response.status(500).json({success: false, data: error});
     } else {
-      var todo1 = result[0];
-      console.log(todo1);
-      response.status(200).json(result[0]);
+    //  var todo1 = result[0];
+     // console.log(todo1);
+    //  response.status(200).json(result[0]);
     }
   });
 }
 
 function newToDoFromDb(id, callback) {
-  console.log("New ToDo from DB with id: " + id);
+  console.log("New ToDo from DB with id: ");
   var client = new pg.Client(connectionString);
   client.connect(function(err) {
     if (err) {
@@ -95,7 +95,7 @@ function newToDoFromDb(id, callback) {
 
 
  
-    var params = [id];
+    var params = 123;
     var query = client.query(sql, params, function(err, result) {
       client.end(function(err) {
         if (err) throw err;
@@ -105,7 +105,7 @@ function newToDoFromDb(id, callback) {
         console.log(err);
         callback(err, null);
       }
-      console.log("Found result: " + JSON.stringify(result.rows));
+     // console.log("Found result: " + JSON.stringify(result.rows));
       callback(null, result.rows);
     });
   });
