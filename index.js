@@ -105,7 +105,7 @@ function newToDoFromDb(id, qwe,  callback) {
 //    client.query('INSERT INTO todolists(text, complete) values($1, $2)', [data.text, data.complete]);
 
 //    var params = [name, descr, dline];
-//var qwe = "1017-07-15";
+//var qwe = "1017-07-15"; 
 
     var params = [id, id, qwe];
     var query = client.query(sql, params, function(err, result) {
