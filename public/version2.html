@@ -65,7 +65,7 @@
 <script>
 function testAll() {
 
-alert("start!");
+// alert("start!");
 
     // $.getJSON("/version3", function(result){
     //         $.each(result, function(i, field){
@@ -74,33 +74,34 @@ alert("start!");
     //     });
 
 
-    $.getJSON("/version3", function(result){
+$.getJSON("/version3", function(result){
 
-result.forEach( function(element, index) {
-  
-  alert(index);
+// result.forEach( function(element, index) {
+// alert(index);
+// });
+updateResultList(result)
 
-});
-
-            // $.each(result, function(i, field){
-            //     $("#json1").append(field + " ");
-            // });
-        });
-
-
-
-
-    // $.get("/version3", function(data, status){
-    
-    //  alert(data);
-    // });
-    
+});    
 }
-//  alert(todo1);
-// var test = allTodos();
-//   alert(test);
+
+function updateResultList(data) {
+  if (data.Search && data.Search.length > 0) {
+    var resultList = $("#ulResults");
+    resultList.empty();
+
+    for (var i = 0; i < data.Search.length; i++) {
+      var name = data.Search[i].name;
+      resultList.append("<li><p>" + name + "</p></li>");
+    }
+  }
+}
 </script>
 
+  <div id="divResults">
+    <h2>Results</h2>
+    <ul id="ulResults">
+    </ul>
+  </div>
 
 
 
