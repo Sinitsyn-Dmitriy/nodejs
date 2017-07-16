@@ -28,13 +28,13 @@ app.get('/version2', function(request, response) {
 function version2ToDo(request, response) {
   //var id = request.query.id;
   version2ToDoFromDb( function(error, result) {
-    if (error || result == null || result.length != 1) {
-      response.status(500).json({success: false, data: error});
-    } else {
+    // if (error || result == null || result.length != 1) {
+    //   response.status(500).json({success: false, data: error});
+    // } else {
       var todo1 = result[0];
       console.log(todo1);
       response.status(200).json(result[0]);
-    }
+   // }
   });
 }  
 
