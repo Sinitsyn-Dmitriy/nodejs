@@ -114,37 +114,46 @@ function newToDoFromDb(name, descr, dline, callback) {
 
 //update
 
-app.get('/updToDo', function(request, response) {
-  updToDo(request, response);
+
+
+app.get('/newToDo', function(request, response) {
+  newToDo(request, response);
 });
 
-function updToDo(request, response) {
+function newToDo(request, response) {
+  var name = request.query.name; 
+  var descr  = request.query.descr;
+  var dline = request.query.dline;
   var id = request.query.id;
-  updToDoFromDb(id, function(error, result) {
+  // var qwe = request.query.qwe;
+  newToDoFromDb(name, descr, dline, id, function(error, result) {
     if (error || result == null || result.length != 1) {
       response.status(500).json({success: false, data: error});
     } else {
       var todo1 = result[0];
+      console.log(todo1);
       response.status(200).json(result[0]);
     }
   });
 }
 
-function updToDoFromDb(id, callback) {
-  console.log("Update ToDo from DB with id: " + id);
+function newToDoFromDb(name, descr, dline, id, callback) {
+  console.log("Creating ToDo in DB");
   var client = new pg.Client(connectionString);
   client.connect(function(err) {
     if (err) {
       console.log("Error connecting to DB: ")
       console.log(err);
       callback(err, null);
-    }
+    }  
     
-    //var sql = "SELECT id, name, descr, dline FROM todolists WHERE id = $1::int";
-    var sql = "UPDATE todolists SET name='name', descr='deskript', dline='2222-07-15T00:00:00.000Z' WHERE id = $1::int";
+    //var sql = "UPDATE todolists SET name='name', descr='deskript', dline='2222-07-15T00:00:00.000Z' WHERE id = $1::int";
     
+    var sql = "UPDATE todolists SET name=$1::varchar, descr='deskript', descr=$2::varchar, dline=$3::date WHERE id = $1::int";
+    
+    //var sql = "INSERT INTO todolists (name, descr, dline) VALUES ($1::varchar, $2::varchar, $3::date)";
 
-    var params = [id];
+    var params = [name, descr, dline, id]; 
     var query = client.query(sql, params, function(err, result) {
       client.end(function(err) {
         if (err) throw err;
@@ -161,48 +170,96 @@ function updToDoFromDb(id, callback) {
 } 
 
 
-//delete
-app.get('/delToDo', function(request, response) {
-  delToDo(request, response);
-});
 
-function delToDo(request, response) {
-  var id = request.query.id;
-  delToDoFromDb(id, function(error, result) {
-    if (error || result == null || result.length != 1) {
-      response.status(500).json({success: false, data: error});
-    } else {
-      var todo1 = result[0];
-      response.status(200).json(result[0]);
-    }
-  });
-}
+// app.get('/updToDo', function(request, response) {
+//   updToDo(request, response);
+// });
 
-function delToDoFromDb(id, callback) {
-  console.log("Deleting ToDo from DB with id: " + id);
-  var client = new pg.Client(connectionString);
-  client.connect(function(err) {
-    if (err) {
-      console.log("Error connecting to DB: ")
-      console.log(err);
-      callback(err, null);
-    }
-    var sql = "DELETE FROM todolists WHERE id = $1::int";
-    var params = [id];
-    var query = client.query(sql, params, function(err, result) {
-      client.end(function(err) {
-        if (err) throw err;
-      });
-      if (err) {
-        console.log("Error in query: ")
-        console.log(err);
-        callback(err, null);
-      }
-      console.log("Found result: " + JSON.stringify(result.rows));
-      callback(null, result.rows);
-    });
-  });
-} 
+// function updToDo(request, response) {
+//   var id = request.query.id;
+//   updToDoFromDb(id, function(error, result) {
+//     if (error || result == null || result.length != 1) {
+//       response.status(500).json({success: false, data: error});
+//     } else {
+//       var todo1 = result[0];
+//       response.status(200).json(result[0]);
+//     }
+//   });
+// }
+
+// function updToDoFromDb(id, callback) {
+//   console.log("Update ToDo from DB with id: " + id);
+//   var client = new pg.Client(connectionString);
+//   client.connect(function(err) {
+//     if (err) {
+//       console.log("Error connecting to DB: ")
+//       console.log(err);
+//       callback(err, null);
+//     }
+    
+ 
+//     var sql = "UPDATE todolists SET name='name', descr='deskript', dline='2222-07-15T00:00:00.000Z' WHERE id = $1::int";
+    
+
+//     var params = [id];
+//     var query = client.query(sql, params, function(err, result) {
+//       client.end(function(err) {
+//         if (err) throw err;
+//       });
+//       if (err) {
+//         console.log("Error in query: ")
+//         console.log(err);
+//         callback(err, null);
+//       }
+//       console.log("Found result: " + JSON.stringify(result.rows));
+//       callback(null, result.rows);
+//     });
+//   });
+// } 
+
+
+// //delete
+// app.get('/delToDo', function(request, response) {
+//   delToDo(request, response);
+// });
+
+// function delToDo(request, response) {
+//   var id = request.query.id;
+//   delToDoFromDb(id, function(error, result) {
+//     if (error || result == null || result.length != 1) {
+//       response.status(500).json({success: false, data: error});
+//     } else {
+//       var todo1 = result[0];
+//       response.status(200).json(result[0]);
+//     }
+//   });
+// }
+
+// function delToDoFromDb(id, callback) {
+//   console.log("Deleting ToDo from DB with id: " + id);
+//   var client = new pg.Client(connectionString);
+//   client.connect(function(err) {
+//     if (err) {
+//       console.log("Error connecting to DB: ")
+//       console.log(err);
+//       callback(err, null);
+//     }
+//     var sql = "DELETE FROM todolists WHERE id = $1::int";
+//     var params = [id];
+//     var query = client.query(sql, params, function(err, result) {
+//       client.end(function(err) {
+//         if (err) throw err;
+//       });
+//       if (err) {
+//         console.log("Error in query: ")
+//         console.log(err);
+//         callback(err, null);
+//       }
+//       console.log("Found result: " + JSON.stringify(result.rows));
+//       callback(null, result.rows);
+//     });
+//   });
+// } 
 
 
 /////////////
