@@ -47,8 +47,8 @@ function version2ToDoFromDb(id, callback) {
       console.log(err);
       callback(err, null);
     }
-    var sql = "SELECT id, name, descr, dline FROM todolists WHERE id = $1::int";
-    var params = [id];
+    var sql = "SELECT * FROM todolists";
+    var params = [];
     var query = client.query(sql, params, function(err, result) {
       client.end(function(err) {
         if (err) throw err;
