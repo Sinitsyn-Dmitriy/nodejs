@@ -12,6 +12,59 @@ var pg = require("pg");
 const connectionString = "postgres://iphioobnwfhxqh:71052f3a32f6d245594b6e8c134f56cf4952b0e2e6838c2a7108f806437ee3a3@ec2-23-21-220-48.compute-1.amazonaws.com:5432/d2mg8u31dr7ukf";
 
 //////////
+//v2
+// app.get('/version2', function(request, response) {
+//   response.sendFile(__dirname + '/public/version2.html');
+// });
+
+// app.get('/version2', function(request, response) {
+//   response.sendFile(__dirname + '/public/version2.html');
+// });
+
+app.get('/version2', function(request, response) {
+  version2ToDo(request, response);
+});
+
+function version2ToDo(request, response) {
+  var id = request.query.id;
+  version2ToDoFromDb(id, function(error, result) {
+    if (error || result == null || result.length != 1) {
+      response.status(500).json({success: false, data: error});
+    } else {
+      var todo1 = result[0];
+      console.log(todo1);
+      response.status(200).json(result[0]);
+    }
+  });
+}  
+
+function version2ToDoFromDb(id, callback) {
+  console.log("Getting All ToDo from DB");
+  var client = new pg.Client(connectionString);
+  client.connect(function(err) {
+    if (err) {
+      console.log("Error connecting to DB: ")
+      console.log(err);
+      callback(err, null);
+    }
+    var sql = "SELECT id, name, descr, dline FROM todolists WHERE id = $1::int";
+    var params = [id];
+    var query = client.query(sql, params, function(err, result) {
+      client.end(function(err) {
+        if (err) throw err;
+      });
+      if (err) {
+        console.log("Error in query: ")
+        console.log(err);
+        callback(err, null);
+      }
+      console.log("Found result: " + JSON.stringify(result.rows));
+      callback(null, result.rows);
+    });
+  });
+} 
+
+
 
 // select
 app.get('/getToDo', function(request, response) {
@@ -281,9 +334,9 @@ app.get('/contact', function(request, response) {
   response.sendFile(__dirname + '/public/contact.html');
 });
 
-app.get('/version2', function(request, response) {
-  response.sendFile(__dirname + '/public/version2.html');
-});
+// app.get('/version2', function(request, response) {
+//   response.sendFile(__dirname + '/public/version2.html');
+// });
 
 app.use(function(err, req, res, next) {
   console.error(err.stack);
