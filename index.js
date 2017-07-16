@@ -104,7 +104,9 @@ function newToDoFromDb(id, callback) {
 //    client.query('INSERT INTO todolists(text, complete) values($1, $2)', [data.text, data.complete]);
 
 //    var params = [name, descr, dline];
-    var params = [id];
+
+
+    var params = [id, id];
     var query = client.query(sql, params, function(err, result) {
       client.end(function(err) {
         if (err) throw err;
