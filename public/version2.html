@@ -42,15 +42,11 @@
   </div>
 </nav>
 
-<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div>
-<a href="#" onclick="signOut();">Sign out</a> -->
 
 <div class="container">
 <!--  -->
 <hr>
 </div>
-
-
 
 <div class="container text-center">    
   <h3>Version 2</h3>
@@ -65,67 +61,39 @@
 <script>
 function testAll() {
 
-// alert("start!");
-
-    // $.getJSON("/version3", function(result){
-    //         $.each(result, function(i, field){
-    //             $("#json1").append(field + " ");
-    //         });
-    //     });
-
-
 $.getJSON("/version3", function(result){
-
-// result.forEach( function(element, index) {
-// alert(index);
-// });
 
 console.log(result);
 
-updateResultList(result);
-
+createList(result);
 });    
 }
 
-function updateResultList(data) {
+function createList(data) {
 
   if (data.length > 0) {
-
-alert("good!");
 
     var resultList = $("#ulResults");
     resultList.empty();
 
     for (var i = 0; i < data.length; i++) {
-      //var name = data.Search[i].name;
       
-      //var name = data.Object.Object[i].name;
-
-//var name = data[i];
-//name, descr, dline, id
-var id = data[i].id;
-var name = data[i].name;
-var dline = data[i].dline;
-var descr = data[i].descr;
+      var id = data[i].id;
+      var name = data[i].name;
+      var dline = data[i].dline;
+      var descr = data[i].descr;
 
       resultList.append("<li><p>" + name + " " + descr + " " + dline + "</p></li>");
-//alert(name);
-//   $.each(data, function(index, val) {
-//     console.log(val.category);
-// });
-
     }
   }
 }
 </script>
 
   <div id="divResults">
-    <h2>Results</h2>
+    <h4>ToDo List</h4>
     <ol id="ulResults">
     </ol>
   </div>
-
-
 
     </div> 
   </div>
