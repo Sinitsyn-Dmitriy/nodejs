@@ -17,24 +17,16 @@ const connectionString = "postgres://iphioobnwfhxqh:71052f3a32f6d245594b6e8c134f
 //   response.sendFile(__dirname + '/public/version2.html');
 // });
 
-// app.get('/version2', function(request, response) {
-//   response.sendFile(__dirname + '/public/version2.html');
-// });
-
 app.get('/version2', function(request, response) {
   version2ToDo(request, response);
 });
 
 function version2ToDo(request, response) {
-  //var id = request.query.id;
   version2ToDoFromDb( function(error, result) {
-    // if (error || result == null || result.length != 1) {
-    //   response.status(500).json({success: false, data: error});
-    // } else {
       var todo1 = result;
       console.log(todo1); 
-      response.status(200).json(result);
-   // }
+//      response.status(200).json(result);
+      response.sendFile(__dirname + '/public/version2.html');
   });
 }  
 
@@ -333,11 +325,6 @@ app.get('/about', function(request, response) {
 app.get('/contact', function(request, response) {
   response.sendFile(__dirname + '/public/contact.html');
 });
-
-// app.get('/version2', function(request, response) {
-//   response.sendFile(__dirname + '/public/version2.html');
-// });
-
 app.use(function(err, req, res, next) {
   console.error(err.stack);
   res.status(500).send('Ops! It is 500 status!');
