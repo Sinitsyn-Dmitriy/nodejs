@@ -25,7 +25,7 @@ function version2ToDo(request, response) {
   version2ToDoFromDb( function(error, result) {
       var todo1 = result;
       console.log(todo1); 
-//      response.status(200).json(result);
+      response.status(200).json(result);
       response.sendFile(__dirname + '/public/version2.html');
   });
 }  
