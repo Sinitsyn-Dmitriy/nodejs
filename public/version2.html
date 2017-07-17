@@ -109,12 +109,17 @@ function createList(data) {
     <tbody>
       
 
-        <% todolist.forEach(function(todo, index) { %>
+        
   <tr>     
-<td  class="col-sm-11"><%= todo %></td>&nbsp;&nbsp;&nbsp;<td><a href="/todo/deleteit/<%= index %>"><button>delete</button></a></td> 
+<td  class="col-sm-11">
+
+    <ol id="ulResults">
+    </ol>
+
+</td>&nbsp;&nbsp;&nbsp;<td><a href="/todo/deleteit/<%= index %>"><button>delete</button></a></td> 
 
 </tr>
-        <% }); %>
+        
     </tbody>
   </table>
 
