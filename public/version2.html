@@ -96,6 +96,29 @@ function createList(data) {
     </ol>
   </div>
 
+
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th class="form1">Goal</th>
+        <th class="form1">Done</th>
+    
+      </tr>
+    </thead>
+    <tbody>
+      
+
+        <% todolist.forEach(function(todo, index) { %>
+  <tr>     
+<td  class="col-sm-11"><%= todo %></td>&nbsp;&nbsp;&nbsp;<td><a href="/todo/deleteit/<%= index %>"><button>delete</button></a></td> 
+
+</tr>
+        <% }); %>
+    </tbody>
+  </table>
+
+
     </div> 
   </div>
 </div><br>
