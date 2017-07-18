@@ -227,6 +227,7 @@ function delToDo(request, response) {
     } else {
       //var todo1 = result[0];
       //response.status(200).json(result[0]);
+      res.redirect('/version2');
     }
   });
 }
