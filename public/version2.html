@@ -113,19 +113,14 @@ var descrNew = $("#descr").val();
 var dlineNew = $("#dline").val();
 
 
-  var params = {name: nameNew, descr: descrNew, dline: dlineNew};
-
-  $.get("https://pure-bayou-84615.herokuapp.com/newToDo", params, function(data, status){
-
-    console.log("Back from server with the following results:")
-    console.log(status);
-      console.log(data);
-
-   
-  });
-
-location.reload(); 
-
+if (nameNew != "" && descrNew  != "" &&  dlineNew != "") {
+ 
+ alert("good");
+  // var params = {name: nameNew, descr: descrNew, dline: dlineNew};
+  // $.get("https://pure-bayou-84615.herokuapp.com/newToDo", params, function(data, status){ 
+  // });
+  // location.reload(); 
+}
 
 }
 </script>
