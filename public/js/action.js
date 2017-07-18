@@ -21,7 +21,10 @@ if (auth2.isSignedIn.get()) {
   console.log('Email: ' + profile.getEmail());
 }
 
-alert($(".abcRioButtonContentWrapper").html());
+setTimeout(function() {
+  alert($(".abcRioButtonContentWrapper").html());
+}, 2000);
+
 
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
