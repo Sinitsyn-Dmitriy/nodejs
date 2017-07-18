@@ -227,7 +227,7 @@ function delToDo(request, response) {
     } else {
       //var todo1 = result[0];
       //response.status(200).json(result[0]);
-      res.redirect('/version2');
+      response.redirect('/version2');
     }
   });
 }
@@ -253,7 +253,7 @@ function delToDoFromDb(id, callback) {
         callback(err, null);
       }
 //      console.log("Found result: " + JSON.stringify(result.rows));
-      res.redirect('/version2');
+      response.redirect('/version2');
       //callback(null, result.rows);
     });
   });
