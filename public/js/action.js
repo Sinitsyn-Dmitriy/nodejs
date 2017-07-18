@@ -1,7 +1,7 @@
 
 
 setTimeout(function() {
-  alert($(".abcRioButtonContentWrapper").html());
+  alert($(".abcRioButtonContents").html());
 }, 2000);
 
 function onSignIn(googleUser) {
