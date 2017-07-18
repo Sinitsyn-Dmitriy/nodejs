@@ -28,6 +28,9 @@ if (auth2.isSignedIn.get()) {
     });
   }
 
+alert($(".abcRioButtonContentWrapper").html());
+
+
 $(document).ready(function(){
     $("button").click(function(){
         $.ajax({url: "/stylesheets/test.txt", success: function(result){
@@ -36,4 +39,4 @@ $(document).ready(function(){
     });
 });
 
-alert($(".abcRioButtonContentWrapper").html());
+
