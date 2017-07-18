@@ -86,7 +86,7 @@ function createList(data) {
       var dline = data[i].dline;
       var descr = data[i].descr;
 
-      resultList.append("<li><p><b>" + name + "</b><i>" + "      " + descr + "   </i>    " + dline + "<a href='https://pure-bayou-84615.herokuapp.com/delToDo?id=" + id + "'><button>delete</button></a></p></li>");
+      resultList.append("<b>" + name + "</b><i>" + "      " + descr + "   </i>    " + dline + "<a href='https://pure-bayou-84615.herokuapp.com/delToDo?id=" + id + "'><button>delete</button></a>");
     }
   }
 }
