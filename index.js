@@ -231,6 +231,7 @@ function delToDo(request, response) {
 //      response.status(200).json(result[0]);
     }
   });
+  response.sendFile(__dirname + '/public/version2.html');
 }
 
 function delToDoFromDb(id, callback) {
@@ -253,8 +254,8 @@ function delToDoFromDb(id, callback) {
         console.log(err);
         callback(err, null);
       }
-      response.sendFile(__dirname + '/public/version2.html');
-//      console.log("Found result: " + JSON.stringify(result.rows));
+//      response.sendFile(__dirname + '/public/version2.html');
+      console.log("Found result: " + JSON.stringify(result.rows));
       callback(null, result.rows);
     });
   });
