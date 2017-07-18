@@ -2,6 +2,9 @@
 
 setTimeout(function() {
   alert($(".abcRioButtonContents span:nth-child(2)").html());
+  if ($(".abcRioButtonContents span:nth-child(2)").html() != "Signed in") {
+alert("good");
+  }
 }, 2000);
 
 function onSignIn(googleUser) {
