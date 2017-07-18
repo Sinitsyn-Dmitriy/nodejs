@@ -83,7 +83,7 @@ function createList(data) {
       
       var id = data[i].id;
       var name = data[i].name;
-      var dline = data[i].dline.toDateString();
+      var dline = data[i].dline;
       var descr = data[i].descr;
 
       resultList.append("<li><p>" + name + " " + descr + " " + dline + "<a href='https://pure-bayou-84615.herokuapp.com/delToDo?id=" + id + "'><button>delete</button></a></p></li>");
