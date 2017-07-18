@@ -102,6 +102,7 @@ function createList(data) {
   <input type="text" id="descr">
   <input type="date" id="dline">
 <button onclick="newTodoAdd()"></button>
+<p id="newLink"></p>
 <a href="" id="newLink"></a>
 </div>
 <script>
@@ -112,7 +113,7 @@ var nameNew = $("#name").val();
 var descrNew = $("#descr").val();
 var dlineNew = $("#dline").val();
 
-$("#dline").html(nameNew + descrNew + dlineNew);
+$("#newLink").html(nameNew + descrNew + dlineNew);
 //newLink
 
 //  nameNew, descrNew, dlineNew
