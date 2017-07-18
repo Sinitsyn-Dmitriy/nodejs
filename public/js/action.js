@@ -1,6 +1,6 @@
 
 
-alert($(".abcRioButtonContentWrapper").html());
+
 
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
@@ -36,4 +36,4 @@ $(document).ready(function(){
     });
 });
 
-
+alert($(".abcRioButtonContentWrapper").html());
