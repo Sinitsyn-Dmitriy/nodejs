@@ -1,6 +1,8 @@
 
 
-
+setTimeout(function() {
+  alert($(".abcRioButtonContentWrapper").html());
+}, 10);
 
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
@@ -21,9 +23,7 @@ if (auth2.isSignedIn.get()) {
   console.log('Email: ' + profile.getEmail());
 }
 
-setTimeout(function() {
-  alert($(".abcRioButtonContentWrapper").html());
-}, 10);
+
 
 
   function signOut() {
