@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CS 313: 01 (Online); Spring 2017</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+  <script src="/js/action.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="128447962950-31ri8l6v06rbp76hvt584ne5m3md2s0l.apps.googleusercontent.com">
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="/"><img id="navbar-brand" src="/img/logo.png" alt=""></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="todo">ToDo List</a></li>
+        <li><a href="version2">Version 2</a></li>
+        <li><a href="about">About This Projects</a></li>
+        <li><a href="contact">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+       <!--  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
+        <li><a href="#" onclick="signOut();">Sign out</a></li>
+        <li><a class="g-signin2" data-onsuccess="onSignIn"></a></li>
+        <!-- <li><div class="g-signin2" data-onsuccess="onSignIn"></div></li> -->
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container">
+<!--  -->
+<hr>
+</div>
+
+<div class="container text-center">    
+  
+  <h3>Update</h3>
+  <h5>Input new data</h5>
+  <br>
+  <div class="row">
+    <div class="col-sm-12">
+
+
+
+<!-- <button onclick="testAll()"></button>
+<div id="json1"></div>
+ -->
+<script>
+//function testAll() {
+
+$.getJSON("/version3", function(result){
+
+console.log(result);
+
+createList(result);
+});    
+//}
+
+function createList(data) {
+
+  if (data.length > 0) {
+
+    var resultList = $("#ulResults");
+    resultList.empty();
+
+    for (var i = 0; i < data.length; i++) {
+      
+      var id = data[i].id;
+      var name = data[i].name;
+      var dline = data[i].dline;
+      var descr = data[i].descr;
+
+      resultList.append("<tr><b><td  class='col-sm-1' > " + name + "</td> </b><i><td  class='col-sm-10' > " + "      " + descr + "   </td> </i>    <td  class='col-sm-1' > " + dline + "<a href='https://pure-bayou-84615.herokuapp.com/delToDo?id=" + id + "'><button>delete</button></a></td></tr> ");
+    }
+  }
+}
+</script>
+
+
+
+<table class="table table-bordered">
+<!--     <thead>
+      <tr>
+        <th class="form1">Goal</th>
+        <th class="form1">Done</th>
+      </tr>
+    </thead> -->
+    <tbody>   
+ <!--  <tr>  -->    
+<!-- <td  class="col-sm-1" id="divResults"></td>   -->     
+
+<!-- 
+  <div id="divResults"> -->
+    <!-- <h4></h4>
+    <ol id="ulResults">
+    </ol> -->
+  <!-- </div> -->
+
+<div  class="col-sm-18"  id="ulResults"></div> 
+<!-- </tr> -->
+    </tbody>
+  </table>
+
+
+
+
+<div id="insert">
+  ToDo Name<input type="text" id="name">
+  Description<input type="text" id="descr">
+  Deadline<input type="date" id="dline">
+<button onclick="newTodoAdd()">Add New ToDo</button>
+<p id="newLink"></p>
+<a href="" id="newLink"></a>
+</div>
+<script>
+function newTodoAdd() {
+
+var nameNew = $("#name").val();
+var descrNew = $("#descr").val();
+var dlineNew = $("#dline").val();
+
+
+if (nameNew != "" && descrNew  != "" &&  dlineNew != "") {
+ 
+// alert("good");
+  var params = {name: nameNew, descr: descrNew, dline: dlineNew};
+  $.get("https://pure-bayou-84615.herokuapp.com/newToDo", params, function(data, status){ 
+  });
+  location.reload(); 
+} else{
+  alert("All fields must be filled out ");
+}
+
+}
+</script>
+
+
+    </div> 
+  </div>
+</div><br>
+
+<footer class="container-fluid text-center">
+  <p>CS 313: 01 (Online); Spring 2017</p>
+</footer>
+
+</body>
+</html>

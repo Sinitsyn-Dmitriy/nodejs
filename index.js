@@ -13,6 +13,11 @@ const connectionString = "postgres://iphioobnwfhxqh:71052f3a32f6d245594b6e8c134f
 
 //////////
 //v2
+
+app.get('/updatetodo1', function(request, response) {
+  response.sendFile(__dirname + '/public/update.html');
+});
+
 app.get('/version2', function(request, response) {
   response.sendFile(__dirname + '/public/version2.html');
 });
