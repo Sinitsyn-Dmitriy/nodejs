@@ -26,6 +26,7 @@ if (auth2.isSignedIn.get()) {
   console.log('Email: ' + profile.getEmail());
 
   $(".g-signin2").css("display", "none");
+  alert("ok");
 }
 
 
