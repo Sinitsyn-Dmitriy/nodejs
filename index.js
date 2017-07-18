@@ -223,7 +223,9 @@ function delToDo(request, response) {
   var id = request.query.id;
   delToDoFromDb(id, function(error, result) {
     if (error || result == null || result.length != 1) {
-      response.status(500).json({success: false, data: error});
+
+      response.sendFile(__dirname + '/public/version2.html');
+//      response.status(500).json({success: false, data: error});
     } else {
       var todo1 = result[0];
 
