@@ -115,11 +115,11 @@ var dlineNew = $("#dline").val();
 
 if (nameNew != "" && descrNew  != "" &&  dlineNew != "") {
  
- alert("good");
-  // var params = {name: nameNew, descr: descrNew, dline: dlineNew};
-  // $.get("https://pure-bayou-84615.herokuapp.com/newToDo", params, function(data, status){ 
-  // });
-  // location.reload(); 
+// alert("good");
+  var params = {name: nameNew, descr: descrNew, dline: dlineNew};
+  $.get("https://pure-bayou-84615.herokuapp.com/newToDo", params, function(data, status){ 
+  });
+  location.reload(); 
 } else{
   alert("All fields must be filled out ");
 }
