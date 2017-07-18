@@ -25,8 +25,8 @@ if (auth2.isSignedIn.get()) {
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail());
 
-  $(".g-signin2").css("display", "none");
-  alert("ok");
+  // $(".g-signin2").css("display", "none");
+  // alert("ok");
 }
 
 
