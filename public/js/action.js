@@ -1,11 +1,11 @@
 
 
-setTimeout(function() {
-  alert($(".abcRioButtonContents span:nth-child(2)").html());
-  if ($(".abcRioButtonContents span:nth-child(2)").html() != "Signed in") {
-alert("good");
-  }
-}, 2000);
+// setTimeout(function() {
+//   alert($(".abcRioButtonContents span:nth-child(2)").html());
+//   if ($(".abcRioButtonContents span:nth-child(2)").html() != "Signed in") {
+// alert("good");
+//   }
+// }, 2000);
 
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
@@ -24,6 +24,8 @@ if (auth2.isSignedIn.get()) {
   console.log('Family Name: ' + profile.getFamilyName());
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail());
+
+  $(".g-signin2").css("display", "none");
 }
 
 
