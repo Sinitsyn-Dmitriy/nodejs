@@ -108,7 +108,8 @@ function createList(data) {
 <script>
 function newTodoAdd(argument) {
 
-var nameNew = $.parseJSON($('#name').val());
+var nameNew = $("#name").val();
+nameNew = $.parseJSON(nameNew);
 //var nameNew = $("#name").val();
 var descrNew = $("#descr").val();
 var dlineNew = $("#dline").val();
