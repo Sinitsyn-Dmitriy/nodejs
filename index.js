@@ -233,7 +233,6 @@ function delToDo(request, response) {
 //      response.status(200).json(result[0]);
     }
   });
-//  response.sendFile(__dirname + '/public/version2.html'); 
 }
 
 function delToDoFromDb(id, callback) {

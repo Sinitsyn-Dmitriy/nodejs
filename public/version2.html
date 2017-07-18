@@ -97,35 +97,27 @@ function createList(data) {
   </div>
 
 
-<!-- <table class="table table-bordered"> -->
-<!--     <thead>
-      <tr>
-        <th class="form1">Goal</th>
-        <th class="form1">Done</th>
-    
-      </tr>
-    </thead> -->
-    <!-- <tbody> -->
-      
-
-        
-<!--   <tr>     
-<td  class="col-sm-11">
-
-    <ol id="ulResults">
-    </ol>
-
-</td>
-&nbsp;&nbsp;&nbsp;<td><a href="/todo/deleteit/<%= index %>"><button>delete</button></a></td> 
+<div id="insert">
+  <input type="text" id="name">
+  <input type="text" id="descr">
+  <input type="date" id="dline">
+<button onclick="newTodoAdd()"></button>
+<a href="" id="newLink"></a>
+</div>
+<script>
+function newTodoAdd(argument) {
 
 
-        
-  <div id="divResults">
-    <h4>ToDo List</h4>
-    <ol id="ulResults">
-    </ol>
-  </div>
-</tr> -->
+var nameNew = $("#name").val();
+var descrNew = $("#descr").val();
+var dlineNew = $("#dline").val();
+
+$("#dline").html(nameNew + descrNew + dlineNew);
+//newLink
+
+//  nameNew, descrNew, dlineNew
+}
+</script>
 
 
     </div> 
