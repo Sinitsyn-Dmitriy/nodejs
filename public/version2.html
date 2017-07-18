@@ -106,15 +106,37 @@ function createList(data) {
 <a href="" id="newLink"></a>
 </div>
 <script>
-function newTodoAdd(argument) {
+function newTodoAdd() {
 
 var nameNew = $("#name").val();
-nameNew = $.parseJSON(nameNew);
+//nameNew = $.parseJSON(nameNew);
 //var nameNew = $("#name").val();
 var descrNew = $("#descr").val();
 var dlineNew = $("#dline").val();
 
 $("#newLink").html(nameNew + descrNew + dlineNew);
+
+
+
+  // Get the value from the search box
+  //var searchString = $("#txtSearch").val();
+  //console.log("Searching for: " + searchString);
+
+  // Set up the parameters to send to the API
+  var params = {name: nameNew, descr: descrNew, dline: dlineNew};
+//  var params = {s: searchString, apikey:"fill_this_in_with_the_correct_key"};
+
+  // Use jQuery to make the get request
+  $.get("https://pure-bayou-84615.herokuapp.com/newToDo", params, function(data, status){
+    // For debugging purposes, make a note that we're back
+    console.log("Back from server with the following results:")
+    console.log(status);
+      console.log(data);
+
+     // updateResultList(data)
+  });
+
+
 // https://pure-bayou-84615.herokuapp.com/newToDo?name=loundry&descr=domylondry&dline=2017-05-11
 //newLink
 
