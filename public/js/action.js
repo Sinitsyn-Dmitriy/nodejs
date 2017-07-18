@@ -2,7 +2,7 @@
 
 setTimeout(function() {
   alert($(".abcRioButtonContentWrapper").html());
-}, 10);
+}, 2000);
 
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
