@@ -84,7 +84,7 @@ function createList(data) {
       var dline = data[i].dline;
       var descr = data[i].descr;
 
-      resultList.append("<li><p>" + name + " " + descr + " " + dline + "<button>delete</button></p></li>");
+      resultList.append("<li><p>" + name + " " + descr + " " + dline + "<a href='https://pure-bayou-84615.herokuapp.com/delToDo?id=" + id + "'><button>delete</button></a></p></li>");
     }
   }
 }
@@ -95,7 +95,6 @@ function createList(data) {
     <ol id="ulResults">
     </ol>
   </div>
-
 
 
 <!-- <table class="table table-bordered"> -->
