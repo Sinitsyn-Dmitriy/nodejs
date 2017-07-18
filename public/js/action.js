@@ -23,7 +23,7 @@ if (auth2.isSignedIn.get()) {
 
 setTimeout(function() {
   alert($(".abcRioButtonContentWrapper").html());
-}, 2000);
+}, 10);
 
 
   function signOut() {
