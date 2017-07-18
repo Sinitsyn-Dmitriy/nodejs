@@ -252,8 +252,9 @@ function delToDoFromDb(id, callback) {
         console.log(err);
         callback(err, null);
       }
-      console.log("Found result: " + JSON.stringify(result.rows));
-      callback(null, result.rows);
+//      console.log("Found result: " + JSON.stringify(result.rows));
+      res.redirect('/version2');
+      //callback(null, result.rows);
     });
   });
 } 
